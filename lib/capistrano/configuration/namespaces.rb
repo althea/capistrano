@@ -4,8 +4,10 @@ module Capistrano
   class Configuration
     module Namespaces
       DEFAULT_TASK = :default
+      include Capistrano::Configuration::Execution
 
       def self.included(base) #:nodoc:
+        base.send :alias_method, :invoke_task_directly_without_callbacks, :invoke_task_directly
         base.send :alias_method, :initialize_without_namespaces, :initialize
         base.send :alias_method, :initialize, :initialize_with_namespaces
       end
