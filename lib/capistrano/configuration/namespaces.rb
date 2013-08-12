@@ -8,6 +8,7 @@ module Capistrano
 
       def self.included(base) #:nodoc:
         base.send :alias_method, :invoke_task_directly_without_callbacks, :invoke_task_directly
+        base.send :alias_method, :invoke_task_directly, :invoke_task_directly_with_callbacks
         base.send :alias_method, :initialize_without_namespaces, :initialize
         base.send :alias_method, :initialize, :initialize_with_namespaces
       end
